@@ -2,7 +2,9 @@ package com.swapnilsankla.moneytransfer.service
 
 import com.swapnilsankla.moneytransfer.model.Account
 import com.swapnilsankla.moneytransfer.repository.AccountRepository
+import javax.inject.Singleton
 
+@Singleton
 class MoneyTransferService(private val accountRepository: AccountRepository) {
     fun transfer(fromAccountNumber: String, toAccountNumber: String, amount: Double): Boolean {
         val fromAccount = accountRepository.find(fromAccountNumber)

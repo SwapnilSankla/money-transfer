@@ -121,6 +121,6 @@ class MoneyTransferServiceTest {
     }
 }
 
-class DummyAccountRepository(private val accounts: List<Account>): AccountRepository() {
+class DummyAccountRepository(private val accounts: List<Account>): AccountRepository {
     override fun find(accountNumber: String) = accounts.find { acc -> acc.id == accountNumber }
 }

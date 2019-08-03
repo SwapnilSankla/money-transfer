@@ -8,4 +8,6 @@ data class Account(val id: String, var balance: Double) {
     fun credit(amount: Double) {
         balance += amount
     }
+
+    fun sufficientBalanceToDebit(amount: Double) = balance >= amount
 }

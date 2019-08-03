@@ -11,7 +11,7 @@ class MoneyTransferService(private val accountRepository: AccountRepository) {
     }
 
     private fun transfer(from: Account, to: Account, amount: Double): Boolean {
-        if (from.balance >= amount) {
+        if (from.sufficientBalanceToDebit(amount)) {
             from.debit(amount)
             to.credit(amount)
             return true

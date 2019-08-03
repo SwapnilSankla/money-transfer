@@ -89,8 +89,38 @@ class MoneyTransferServiceTest {
         )
         Assertions.assertEquals(5000.0, to.balance)
     }
+
+    @Test
+    fun `transaction should fail if sender's accountNumber not found`() {
+        val from = Account("8657", 10000.0)
+        val to = Account("4321", 5000.0)
+        val moneyTransferService = MoneyTransferService(DummyAccountRepository(listOf(from, to)))
+
+        val transferred = moneyTransferService.transfer(
+                fromAccountNumber = "1234",
+                toAccountNumber = "4321",
+                amount = 2000.0
+        )
+
+        Assertions.assertFalse(transferred)
+    }
+
+    @Test
+    fun `transaction should fail if receiver's accountNumber not found`() {
+        val from = Account("1234", 10000.0)
+        val to = Account("8657", 5000.0)
+        val moneyTransferService = MoneyTransferService(DummyAccountRepository(listOf(from, to)))
+
+        val transferred = moneyTransferService.transfer(
+                fromAccountNumber = "1234",
+                toAccountNumber = "4321",
+                amount = 2000.0
+        )
+
+        Assertions.assertFalse(transferred)
+    }
 }
 
 class DummyAccountRepository(private val accounts: List<Account>): AccountRepository() {
-    override fun find(accountNumber: String) = accounts.find { acc -> acc.id == accountNumber }!!
+    override fun find(accountNumber: String) = accounts.find { acc -> acc.id == accountNumber }
 }

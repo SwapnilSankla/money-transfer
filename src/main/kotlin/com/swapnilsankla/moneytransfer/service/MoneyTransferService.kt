@@ -7,7 +7,7 @@ class MoneyTransferService(private val accountRepository: AccountRepository) {
     fun transfer(fromAccountNumber: String, toAccountNumber: String, amount: Double): Boolean {
         val fromAccount = accountRepository.find(fromAccountNumber)
         val toAccount = accountRepository.find(toAccountNumber)
-        return transfer(fromAccount, toAccount, amount)
+        return fromAccount?.let { toAccount?.let { transfer(fromAccount, toAccount, amount) } } ?: false
     }
 
     private fun transfer(from: Account, to: Account, amount: Double): Boolean {

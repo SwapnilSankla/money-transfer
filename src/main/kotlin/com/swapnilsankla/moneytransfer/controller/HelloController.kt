@@ -1,4 +1,4 @@
-package com.swapnilsankla.moneytransfer.moneytransfer.controller
+package com.swapnilsankla.moneytransfer.controller
 
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get

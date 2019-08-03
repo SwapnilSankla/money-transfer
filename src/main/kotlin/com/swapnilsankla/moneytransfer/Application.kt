@@ -1,4 +1,4 @@
-package com.swapnilsankla.moneytransfer.moneytransfer
+package com.swapnilsankla.moneytransfer
 
 import io.micronaut.runtime.Micronaut
 

@@ -46,7 +46,7 @@ dependencies {
 
 test.classpath += configurations.developmentOnly
 
-mainClassName = "com.swapnilsankla.Application"
+mainClassName = "com.swapnilsankla.moneytransfer.Application"
 // use JUnit 5 platform
 test {
     useJUnitPlatform()

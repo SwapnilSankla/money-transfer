@@ -17,7 +17,7 @@ class MoneyTransferAPISimulation extends Simulation {
           "amount": 1.0
        }"""))
       .asJson
-      .check(status.is(200)))
+      .check(status.is(201)))
 
   setUp(scn.inject(atOnceUsers(1000))).protocols(httpConf)
 }

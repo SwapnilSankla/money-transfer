@@ -18,7 +18,7 @@ class MoneyTransactionController(private val moneyTransferService: MoneyTransfer
                 amount = transactionRequest.amount
         )
         if (transaction != null) {
-            return HttpResponse.ok(transaction)
+            return HttpResponse.created(transaction)
         }
         return HttpResponse.unprocessableEntity()
     }

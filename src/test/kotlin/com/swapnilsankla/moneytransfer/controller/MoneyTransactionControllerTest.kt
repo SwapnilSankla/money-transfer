@@ -22,7 +22,7 @@ class MoneyTransactionControllerTest {
         val httpClient = RxStreamingHttpClient.create(embeddedServer.url)
         val request = TransactionRequest("1234", "4321", 1000.0)
         val response = httpClient.toBlocking().exchange(HttpRequest.POST("/transaction", request), Transaction::class.java)
-        assertEquals(HttpStatus.OK, response.status)
+        assertEquals(HttpStatus.CREATED, response.status)
         assertEquals(request.fromAccountNumber, response.body()!!.fromAccountNumber)
         assertEquals(request.toAccountNumber, response.body()!!.toAccountNumber)
         assertEquals(request.amount, response.body()!!.amount)

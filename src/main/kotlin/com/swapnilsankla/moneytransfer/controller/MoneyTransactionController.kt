@@ -1,6 +1,6 @@
 package com.swapnilsankla.moneytransfer.controller
 
-import com.swapnilsankla.moneytransfer.model.Transaction
+import com.swapnilsankla.moneytransfer.model.TransactionRequest
 import com.swapnilsankla.moneytransfer.service.MoneyTransferService
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Body
@@ -10,14 +10,14 @@ import io.micronaut.http.annotation.Post
 @Controller("/transaction")
 class MoneyTransactionController(private val moneyTransferService: MoneyTransferService) {
     @Post("/")
-    fun transfer(@Body transaction: Transaction): HttpResponse<Transaction> {
-        val transferred = moneyTransferService.transfer(
-                fromAccountNumber = transaction.fromAccountNumber,
-                toAccountNumber = transaction.toAccountNumber,
-                amount = transaction.amount
+    fun transfer(@Body transactionRequest: TransactionRequest): HttpResponse<TransactionRequest> {
+        val transaction = moneyTransferService.transfer(
+                fromAccountNumber = transactionRequest.fromAccountNumber,
+                toAccountNumber = transactionRequest.toAccountNumber,
+                amount = transactionRequest.amount
         )
-        if (transferred) {
-            return HttpResponse.ok(transaction)
+        if (transaction != null) {
+            return HttpResponse.ok(transactionRequest)
         }
         return HttpResponse.unprocessableEntity()
     }

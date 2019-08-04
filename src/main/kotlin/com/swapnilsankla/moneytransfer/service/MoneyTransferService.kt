@@ -6,6 +6,7 @@ import javax.inject.Singleton
 
 @Singleton
 class MoneyTransferService(private val accountRepository: AccountRepository) {
+    @Synchronized
     fun transfer(fromAccountNumber: String, toAccountNumber: String, amount: Double): Boolean {
         val fromAccount = accountRepository.find(fromAccountNumber)
         val toAccount = accountRepository.find(toAccountNumber)
